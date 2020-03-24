@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] float padding = 0.7f;
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float laserSpeed = 20f;
-    [SerializeField] float laserRateOfFire = 1f;
+    [SerializeField] float laserRateOfFire = 0.3f;
 
     Coroutine firingCoroutine;
 
@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
-
         GameObject laser = Instantiate(
                 laserPrefab,
                 transform.position,

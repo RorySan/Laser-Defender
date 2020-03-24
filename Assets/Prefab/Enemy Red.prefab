@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5068257724117850304}
   - component: {fileID: 5068257724117850305}
   - component: {fileID: 826541559}
+  - component: {fileID: 2193867246256771071}
+  - component: {fileID: 3947084751953954979}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,5 +96,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30a9be4d90d21047b13ebef31a1dcdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  moveSpeed: 2
+--- !u!114 &2193867246256771071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068257724117850310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e570827b549104a9710bdf8cd94008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!58 &3947084751953954979
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068257724117850310}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0018085837, y: -0.0054261684}
+  serializedVersion: 2
+  m_Radius: 0.41148496
