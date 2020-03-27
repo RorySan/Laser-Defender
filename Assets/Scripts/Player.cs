@@ -6,8 +6,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // configuration parameters
+    [Header("Player Config")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 0.7f;
+    [SerializeField] float health = 200f;
+    [Header("Proyectile Config")]
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float laserSpeed = 20f;
     [SerializeField] float laserRateOfFire = 0.3f;
@@ -72,7 +75,24 @@ public class Player : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (damageDealer != null)
+        {
+            ProcessHit(damageDealer);
+        }
+    }
 
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void SetupMoveBoundaries()
     {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 826541559}
   - component: {fileID: 7277303069810027268}
   - component: {fileID: 6434279472514362779}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +115,8 @@ MonoBehaviour:
   enemyLaserPrefab: {fileID: 3314356709498778221, guid: 3db69855accfba44fa011627a19796a5,
     type: 3}
   laserSpeed: 10
+  explosionPrefab: {fileID: 519701499464529277, guid: bb570ec057cf92e48808744575020901,
+    type: 3}
 --- !u!58 &6434279472514362779
 CircleCollider2D:
   m_ObjectHideFlags: 0
