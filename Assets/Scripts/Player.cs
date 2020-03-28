@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float laserSpeed = 20f;
     [SerializeField] float laserRateOfFire = 0.3f;
+    [SerializeField] AudioClip playerDestructionSound;
+    [SerializeField] AudioClip playerLaserSound;
+    [SerializeField] [Range(0, 1)] float playerLaserVolume = 0.7f;
+    [SerializeField] [Range(0, 1)] float playerExplosionVolume = 0.7f;
+    [SerializeField] GameObject sceneLoader;
 
     Coroutine firingCoroutine;
 
@@ -24,8 +29,9 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         SetupMoveBoundaries();
+        
     }
 
     
@@ -41,12 +47,14 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
-        GameObject laser = Instantiate(
-                laserPrefab,
-                transform.position,
-                Quaternion.identity) as GameObject;
-        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
-        yield return new WaitForSeconds(laserRateOfFire);
+            GameObject laser = Instantiate(
+                    laserPrefab,
+                    transform.position,
+                    Quaternion.identity) as GameObject;
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
+            AudioSource.PlayClipAtPoint(playerLaserSound, Camera.main.transform.position, playerLaserVolume);
+        
+            yield return new WaitForSeconds(laserRateOfFire);
         }
         
     }
@@ -90,7 +98,10 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(playerDestructionSound, Camera.main.transform.position, playerExplosionVolume);
+            sceneLoader.GetComponent<SceneLoader>().DelayedNextScene();
             Destroy(gameObject);
+            
         }
     }
 
