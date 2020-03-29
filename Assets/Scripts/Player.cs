@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] [Range(0, 1)] float playerLaserVolume = 0.7f;
     [SerializeField] [Range(0, 1)] float playerExplosionVolume = 0.7f;
     [SerializeField] GameObject sceneLoader;
+    [SerializeField] HealthDisplay healthText;
 
     Coroutine firingCoroutine;
 
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     void Start()
     {        
         SetupMoveBoundaries();
+        healthText = FindObjectOfType<HealthDisplay>();
         
     }
 
@@ -47,9 +50,10 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
+            
             GameObject laser = Instantiate(
                     laserPrefab,
-                    transform.position,
+                    new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z),
                     Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
             AudioSource.PlayClipAtPoint(playerLaserSound, Camera.main.transform.position, playerLaserVolume);
@@ -92,9 +96,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
+        healthText.UpdateHealth();
         damageDealer.Hit();
         if (health <= 0)
         {

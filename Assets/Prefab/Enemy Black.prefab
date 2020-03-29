@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  points: 150
   shotCounter: 0
   minTimeBetweenShots: 0.5
   maxTimeBetweenShots: 3
@@ -124,6 +125,8 @@ MonoBehaviour:
   enemyLaserFireSound: {fileID: 8300000, guid: ecbd3ed5ed2c2bf4fa780ae825445dde, type: 3}
   enemyLaserVolume: 0.5
   enemyExplosionVolume: 0.7
+  gameSession: {fileID: 7154437390760943723, guid: 36cb29a6a08b1d24ca55f6cf509d88b8,
+    type: 3}
 --- !u!58 &6434279472514362779
 CircleCollider2D:
   m_ObjectHideFlags: 0

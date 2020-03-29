@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip enemyLaserFireSound;
     [SerializeField] [Range(0, 1)] float enemyLaserVolume = 0.7f;
     [SerializeField] [Range(0, 1)] float enemyExplosionVolume = 0.7f;
+    [SerializeField] GameObject gameSession;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(enemyExplosionSound, Camera.main.transform.position, enemyExplosionVolume);
         Destroy(explosion, durationOfExplosion);
+        FindObjectOfType<GameSession>().AddScore(points);
         Destroy(gameObject);
     }
 }
